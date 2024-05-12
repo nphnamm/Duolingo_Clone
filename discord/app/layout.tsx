@@ -18,16 +18,12 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
+
       <html lang="en" suppressHydrationWarning>
         <body className={cn(font.className,"bg-white dark:bg-[#313338]")}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem={false}
-            storageKey="discord-theme"
-          >
+     
             {children}
-          </ThemeProvider>
+       
         </body>
       </html>
     </ClerkProvider>
