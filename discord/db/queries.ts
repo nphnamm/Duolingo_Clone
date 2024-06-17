@@ -43,6 +43,11 @@ export const getUnits = cache(async () => {
     });
     const normalizedData = data.map((unit) => {
         const lessonsWithCompletedStatus = unit.lessons.map((lesson) => {
+            if (
+                lesson.challenges.length === 0
+            ) {
+                return {...lesson,completed:false}
+            }
             const allCompletedChallenges = lesson.challenges.every((challenge) => {
                 return (
                   challenge.challengeProgress &&
@@ -120,6 +125,8 @@ export const getLesson = cache(async (id?: number) => {
     if (!lessonId) {
         return null;
     }
+
+    // TODO: confirm whether order is needed 
     const data = await db.query.lessons.findFirst({
         where: eq(lessons.id, lessonId),
         with: {
