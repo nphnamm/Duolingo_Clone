@@ -46,11 +46,11 @@ export const LessonButton = ({
     const Icon = isCompleted ? Check : isLast ? Crown : Star;
 
     const href = isCompleted ? `/lesson/${id}` : "/lesson";
-    console.log('check index', index);
-    console.log('check totalCount', totalCount);
-    console.log('check locked', locked);
-        console.log('check current', current);
-    console.log('check percentage', percentage);
+    // console.log('check index', index);
+    // console.log('check totalCount', totalCount);
+    // console.log('check locked', locked);
+    //     console.log('check current', current);
+    // console.log('check percentage', percentage);
 
 
 

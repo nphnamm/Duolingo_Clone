@@ -24,8 +24,8 @@ const LearnPage = async () => {
         courseProgressData,
         lessonPercentageData
     ]);
-    console.log('check course progress', courseProgress?.activeLesson?.challenges);
-    console.log('check lesson percentage', lessonPercentage);
+    // console.log('check course progress', courseProgress?.activeLesson?.challenges);
+    // console.log('check lesson percentage', lessonPercentage);
     if (!userProgress || !userProgress.activeCourse) {
         redirect("/courses")
     }

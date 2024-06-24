@@ -41,6 +41,7 @@ export const getUnits = cache(async () => {
         }
 
     });
+    // console.log('data', data[0].lessons[0].challenges);
     const normalizedData = data.map((unit) => {
         const lessonsWithCompletedStatus = unit.lessons.map((lesson) => {
             if (
@@ -59,10 +60,13 @@ export const getUnits = cache(async () => {
             })
              return { ...lesson, completed: allCompletedChallenges };
         });
+        // console.log('unit', unit);
         return { ...unit, lessons: lessonsWithCompletedStatus };
-
+        
 
     });
+    //  console.log("unit-2", normalizedData[0].lessons);
+
     return normalizedData;
 });
 
@@ -103,6 +107,17 @@ export const getCourseProgress = cache(async () => {
             }
         }
     });
+ const test =   unitsInActiveCourse[0].lessons.flatMap((lesson) => lesson);
+    // console.log('check:', unitsInActiveCourse[0].lessons.flatMap((lesson) => lesson));
+    console.log('check 2', test[0].challenges.some((challenge) => {
+        return (
+          !challenge.challengeProgress ||
+          challenge.challengeProgress.length === 0 ||
+          challenge.challengeProgress.some(
+            (progress) => progress.completed === false
+          )
+        );
+    }))
     const firstUnCompletedLesson = unitsInActiveCourse.flatMap((unit) => unit.lessons).find((lesson) => {
         return lesson.challenges.some((challenge) => {
             return !challenge.challengeProgress || challenge.challengeProgress.length === 0 || challenge.challengeProgress.some((progress) => progress.completed ===false);

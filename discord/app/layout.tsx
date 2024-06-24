@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/providers/theme-providers";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/sonner";
+import { ExitModal } from "@/components/modals/exit-modal";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
@@ -24,8 +25,8 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <body className={cn(font.className,"bg-white dark:bg-[#313338]")}>
           <Toaster />
-          
-            {children}
+          <ExitModal/>
+          {children}
        
         </body>
       </html>
