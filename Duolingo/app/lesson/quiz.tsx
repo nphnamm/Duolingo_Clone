@@ -37,15 +37,46 @@ export const Quiz = ({
   
 
     const [selectedOption, setSelectedOption] = useState<number>();
-    const [status, setStatus] = useState<"correct" | "wrong" | "none">("wrong");
+    const [status, setStatus] = useState<"correct" | "wrong" | "none">("none");
     const challenge = challenges[activeIndex];
     const options = challenge?.challengeOptions ?? [];
 
+    const onNext = () => {
+        setActiveIndex((current) => current + 1);
+    }
     const onSelect = (id: number) => {
         if (status !== 'none') return;
 
         setSelectedOption(id); 
         
+    }
+    const onContinue = () => {
+        if (!selectedOption) return;
+
+        if (status === "wrong") {
+            setStatus("none");
+            setSelectedOption(undefined);
+            return
+        }
+        if (status === "correct") {
+            onNext();
+            setStatus("none");
+            setSelectedOption(undefined);
+            return
+        }
+        console.log('check option: ', options);
+        const correctOption = options.find((option) => option.correct);
+        
+        if (!correctOption) {
+            return;
+            
+        }
+        if (correctOption && correctOption.id === selectedOption ) {
+            console.log("correct option !");
+
+        } else {
+            console.log("wrong option !");
+        }
     }
     const title = challenge.type === "ASSIST" ? "Select the correct meaning" : challenge.question;
 
@@ -82,8 +113,8 @@ export const Quiz = ({
             </div>
             <Footer
                 disabled={!selectedOption}
-                status={"completed"||status}
-                onCheck={()=>{}}
+                status={status}
+                onCheck={onContinue}
             />
 
       </>
