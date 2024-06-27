@@ -22,7 +22,7 @@ export const Challenge = ({options, onSelect,status, selectedOption,disabled,typ
                     shortcut={`${i + 1}`}
 
                     // To do : remove hardoded ture
-                    selected={true|| selectedOption === option.id}
+                    selected={selectedOption === option.id}
                     onClick={() => onSelect(option.id)}
                     status={status}
                     audioSrc={option.audioSrc}
