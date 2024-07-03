@@ -6,6 +6,8 @@ import { ThemeProvider } from "@/components/providers/theme-providers";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/sonner";
 import { ExitModal } from "@/components/modals/exit-modal";
+import { HeartsModal } from "@/components/modals/hearts-modal";
+import { PracticeModal } from "@/components/modals/practice-modal";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
@@ -26,6 +28,8 @@ export default function RootLayout({
         <body className={cn(font.className,"bg-white dark:bg-[#313338]")}>
           <Toaster />
           <ExitModal/>
+          <HeartsModal/>
+          <PracticeModal/>
           {children}
        
         </body>
