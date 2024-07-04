@@ -8,9 +8,10 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { and, eq } from "drizzle-orm";
 import { error } from "console";
+import { POINTS_TO_REFILL } from "@/constant";
 
 //TODO: move alongisde Item component constant into a common file
-const POINTS_TO_REFILL = 10;
+
 export const upsertUserProgress = async (courseId: number) => {
   const { userId } = await auth();
   const user = await currentUser();
@@ -23,10 +24,10 @@ export const upsertUserProgress = async (courseId: number) => {
   }
 
   // TODO: Enable onnce units and lessons are added.
-  // if (!course.units.length || !course.units[0].lessons.length) {
+   if (!course.units.length || !course.units[0].lessons.length) {
 
-  //     throw new Error("Course has no lessons");
-  // }
+      throw new Error("Course has no lessons");
+  }
   const existingUserProgress = await getUserProgress();
   if (existingUserProgress) {
     await db.update(userProgress).set({
