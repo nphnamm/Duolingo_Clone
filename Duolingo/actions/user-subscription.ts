@@ -50,6 +50,7 @@ export const createStripeUrl = async () =>{
         success_url: returnUrl,
         cancel_url: returnUrl
     });
+    console.log('check stripe',stripeSession)
     return {data: stripeSession.url}
 
 }

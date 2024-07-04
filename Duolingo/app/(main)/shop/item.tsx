@@ -40,7 +40,7 @@ export const Item =({
                 .catch(()=> toast.error("Something went wrong"))
         })
     }
-
+    // console.log('has ', hasActiveSubscription);
     return (
         <div className="w-full">
             <div className="flex items-center w-full p-4 gap-x-4 border-t-2">
@@ -94,9 +94,9 @@ export const Item =({
                     </div>
                     <Button
                     onClick={onUpgrade}
-                    disabled={pending || hasActiveSubscription}
+                    disabled={hasActiveSubscription}
                     >
-                        {hasActiveSubscription ? "Active" : "Upgrade"}
+                        {hasActiveSubscription ? "Settings" : "Upgrade"}
                     </Button>
             </div>
         </div>
