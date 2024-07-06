@@ -8,6 +8,7 @@ import { lessons, challenges, userSubscription } from '../../../db/schema';
 import { Unit } from "./unit";
 import { Promo } from "@/components/promo";
 import { Quests } from "@/components/quests";
+import { auth } from "@clerk/nextjs/server";
 
 const LearnPage = async () => {
     const userProgressData = getUserProgress()
@@ -15,7 +16,7 @@ const LearnPage = async () => {
     const lessonPercentageData = getLessonPercentage();
     const unitsData = getUnits();
     const userSubscriptionData = getUserSubscription();
-
+    const {userId} = auth();
 
     const [userProgress,
         units,
@@ -39,7 +40,7 @@ const LearnPage = async () => {
         redirect("/courses");
     }
     const isPro = !!userSubscription?.isActive;
-     console.log('check user', isPro);
+     console.log('check user', userId);
     return (
         <div className="flex flex-row-reverse gap-[20px] px-6">
             <StickyWrapper>

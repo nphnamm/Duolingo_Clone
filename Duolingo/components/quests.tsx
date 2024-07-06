@@ -32,7 +32,7 @@ export const Quests = ({points}: Props) =>{
                         const progress = (points / quest.value *100);
                         
                         return (
-                            <div className="flex items-center w-full p-4 gap-x-3 border-t-2"
+                            <div className="flex items-center w-full pb-4 gap-x-3 "
                                 key={quest.title}
                             >
                                 <Image
