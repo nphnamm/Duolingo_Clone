@@ -68,6 +68,7 @@ const App = () => {
         edit={ChallengeOptionEdit}
 
         recordRepresentation="text"
+        options={{label:"Challenge Options"}}
         />
      
     </Admin>

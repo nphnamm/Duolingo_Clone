@@ -13,7 +13,7 @@ export const GET = async (
         return new NextResponse("You are not authorized to access this resource", { status: 403 });
     }
 
-    const data = await db.query.challenges.findFirst({
+    const data = await db.query.challengeOptions.findFirst({
         where: eq(challengeOptions.id,params.challengeOptionId)
     })
     return NextResponse.json(data); 

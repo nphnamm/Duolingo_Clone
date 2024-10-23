@@ -53,7 +53,7 @@ const LearnPage = async () => {
                 {isPro &&(
                     <Promo />
                 )}
-                <Quests points={userProgress.points}/>
+                 <Quests points={userProgress.points}/> 
             </StickyWrapper>
             <FeedWrapper>
 

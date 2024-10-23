@@ -42,6 +42,7 @@ const QuestPage = async() =>{
                 )}
             </StickyWrapper>
             <FeedWrapper>
+
                 <div className="w-full flex flex-col items-center">
                     <Image src="/leaderboard.svg"
                     alt="Shop"
@@ -62,7 +63,7 @@ const QuestPage = async() =>{
                         
                         return (
                             <div className="flex items-center w-full p-4 gap-x-4 border-t-2"
-                                key={quest.title}
+                                key={quest.title.toString()}
                             >
                                 <Image
                                     src="/points.svg"

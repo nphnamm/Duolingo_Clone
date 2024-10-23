@@ -16,16 +16,14 @@ export const upsertChallengeProgress = async (challengeId: number) => {
 
     }
     const currentUserProgress = await getUserProgress();
-    const userSubscription = await getUserSubscription();
+     const userSubscription = await getUserSubscription();
 
     //TODO : Handle Subscription query later;
     if(!currentUserProgress){
         throw new Error("User progress not found");
     }
 
-    if(!userSubscription?.isActive){
-        return {error: "subscription"};
-    }
+   
 
     const challenge = await db.query.challenges.findFirst({
         where: eq(challenges.id, challengeId)
@@ -41,10 +39,10 @@ export const upsertChallengeProgress = async (challengeId: number) => {
             eq(challengeProgress.challengeId, challengeId)
         )
     })
-    const isPractice = !!existingChallengeProgress; 
+    const isPractice = !! existingChallengeProgress; 
 
     // TODO: not if user has a subscription
-    if(currentUserProgress.hearts === 0 && !isPractice && !userSubscription?.isActive){
+    if(currentUserProgress.hearts === 0 && !isPractice && !userSubscription?.isActive ){
         return {error: "heart"};
 
     }
@@ -67,11 +65,13 @@ export const upsertChallengeProgress = async (challengeId: number) => {
 
     };
     await db.insert(challengeProgress).values({
-        challengeId,
         userId, 
+        challengeId,
         completed: true,
 
     })
+
+    
     await db.update(userProgress).set({
         points: currentUserProgress.points + 10,
     }).where(eq(userProgress.userId, userId));

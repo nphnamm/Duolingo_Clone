@@ -95,13 +95,14 @@ export const Quiz = ({
             setSelectedOption(undefined);
             return
         }
-        console.log('check option: ', options);
+        // console.log('check option: ', options);
         const correctOption = options.find((option) => option.correct);
         
         if (!correctOption) {
             return;
             
         }
+        console.log('correct ', correctOption.id , selectedOption);
         if (correctOption && correctOption.id === selectedOption ) {
                 
             startTransition(() =>{
